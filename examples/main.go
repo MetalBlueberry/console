@@ -35,6 +35,19 @@ func main() {
 	console.TimeEnd("timer 2")
 	console.TimeEnd()
 
+	time.Sleep(time.Millisecond * 500)
+	console.Clear()
 	console.Trace()
+
+	console.Log("root")
+	console.Group()
+	console.Info("Wops!")
+	console.GroupEnd()
+	console.Log("perfect")
+	console.Group("Found multiple errors")
+	console.Error("error 1")
+	console.Error("value %d was not expected", 10)
+	console.Group("Valid values")
+	console.Info(1,2,3,4,5)
 
 }

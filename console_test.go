@@ -2,7 +2,9 @@ package console_test
 
 import (
 	"bytes"
+	"fmt"
 	"log"
+	"reflect"
 	"testing"
 
 	"github.com/metalblueberry/console"
@@ -64,6 +66,49 @@ func TestConsole_Log(t *testing.T) {
 
 			actual := buf.String()
 			if actual != tt.expect {
+				t.Logf("expected \"%s\", actual \"%s\"", tt.expect, actual)
+				t.Fail()
+			}
+		})
+	}
+}
+
+func TestConsole_Table(t *testing.T) {
+	type args struct {
+		any []any
+	}
+	tests := []struct {
+		args   any
+		expect [][]string
+	}{
+		{
+			args: []string{"hello", "world"},
+			expect: [][]string{
+				{"0", "1"},
+				{"\"hello\"", "\"world\""},
+			},
+		},
+		{
+			args: []interface{}{Simple{Name: "hello world"}, "just a string"},
+			expect: [][]string{
+				{"0", "1"},
+				{"console_test.Simple{Name:\"hello world\"}", "\"just a string\""},
+			},
+		},
+		{
+			args: Simple{Name: "Willy Wonka"},
+			expect: [][]string{
+				{"Name"},
+				{"Willy Wonka"},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(fmt.Sprint(tt.expect), func(t *testing.T) {
+			c := &console.Console{}
+			actual := c.TableData(tt.args)
+
+			if !reflect.DeepEqual(actual, tt.expect) {
 				t.Logf("expected \"%s\", actual \"%s\"", tt.expect, actual)
 				t.Fail()
 			}
