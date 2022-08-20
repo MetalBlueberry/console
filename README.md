@@ -50,3 +50,5 @@ I accept contributions
 ## Why?
 
 I've found myself writing `console.log` so many times that I've decided that I don't want to fight against my instincts any more. I hate javascript but I can't get rid of `console.log`.
+
+I believe a lot of javascript users will start using this package just because it feels familiar to them, and there is nothing wrong with that.
