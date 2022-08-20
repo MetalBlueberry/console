@@ -9,7 +9,8 @@ import (
 	"github.com/olekukonko/tablewriter"
 )
 
-func Table[C comparable](dataSliceOrObject any, columns ...[]string) {
+func Table(dataSliceOrObject any, columns ...[]string) {
+	panic("Not Implemented Yet")
 	DefaultConsole.Table(dataSliceOrObject, columns...)
 }
 
@@ -21,6 +22,7 @@ var DefaultTableWriter = func() *tablewriter.Table {
 }
 
 func (c *Console) Table(dataSliceOrObject any, columns ...[]string) {
+	panic("Not Implemented Yet")
 
 	// tw := c.TableWriter()
 	// tw.SetHeader()
@@ -29,6 +31,8 @@ func (c *Console) Table(dataSliceOrObject any, columns ...[]string) {
 }
 
 func (c *Console) TableData(dataSliceOrObject any) [][]string {
+	panic("Not Implemented Yet")
+
 	var data [][]string
 	switch reflect.TypeOf(dataSliceOrObject).Kind() {
 	case reflect.Slice:
